@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Winter Wonderland</title>
+    <title>Winter Wonderland 3D</title>
     <style>
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
             background-color: #f0f8ff;
             color: #333;
+            perspective: 1000px;
         }
 
         header {
@@ -20,10 +21,13 @@
             justify-content: center;
             align-items: center;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            animation: moveBackground 10s infinite alternate;
         }
 
         header h1 {
             font-size: 3em;
+            transform: rotateX(20deg);
+            animation: floatText 3s infinite ease-in-out;
         }
 
         nav {
@@ -38,11 +42,12 @@
             text-decoration: none;
             margin: 0 15px;
             font-weight: bold;
-            transition: color 0.3s;
+            transition: transform 0.3s, color 0.3s;
         }
 
         nav a:hover {
             color: #ffcccb;
+            transform: rotateY(15deg);
         }
 
         .container {
@@ -56,6 +61,11 @@
             margin: 1em auto;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s;
+        }
+
+        .container img:hover {
+            transform: rotateY(10deg) scale(1.05);
         }
 
         .gallery {
@@ -69,11 +79,11 @@
             width: 100%;
             max-width: 200px;
             border-radius: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 0.5s, box-shadow 0.5s;
         }
 
         .gallery img:hover {
-            transform: scale(1.1);
+            transform: rotateZ(15deg) translateY(-10px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
 
@@ -87,6 +97,24 @@
 
         footer p {
             margin: 0;
+        }
+
+        @keyframes moveBackground {
+            from {
+                background-position: center top;
+            }
+            to {
+                background-position: center bottom;
+            }
+        }
+
+        @keyframes floatText {
+            0%, 100% {
+                transform: rotateX(20deg) translateY(0);
+            }
+            50% {
+                transform: rotateX(20deg) translateY(-10px);
+            }
         }
     </style>
 </head>
